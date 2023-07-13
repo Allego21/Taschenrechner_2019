@@ -1,0 +1,252 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Rechner extends JFrame implements ActionListener {
+/**
+*
+*/
+private static final long serialVersionUID = 1L;
+int backspace = 0;
+double Ergebnis = 0;
+double num2 = 0;
+double num2_test = 0;
+String Operator;
+private JFormattedTextField txtErg = new JFormattedTextField(Ergebnis);
+private JLabel lblErg = new JLabel("Ergebnis");
+
+private JButton btback = new JButton("<");
+private JButton btis = new JButton("=");
+private JButton bt1 = new JButton("1");
+private JButton bt2 = new JButton("2");
+private JButton bt3 = new JButton("3");
+private JButton bt4 = new JButton("4");
+private JButton bt5 = new JButton("5");
+private JButton bt6 = new JButton("6");
+private JButton bt7 = new JButton("7");
+private JButton bt8 = new JButton("8");
+private JButton bt9 = new JButton("9");
+private JButton bt0 = new JButton("0");
+private JButton btplus = new JButton("+");
+private JButton btminus = new JButton("-");
+private JButton btmal = new JButton("*");
+private JButton btgeteilt = new JButton("/");
+private JButton btDel = new JButton("C");
+
+public Rechner() {
+Container cp = getContentPane();
+cp.setLayout(null);
+
+lblErg.setBounds(52, 10, 220, 30);
+txtErg.setBounds(51, 10, 190, 30);
+txtErg.setEditable(false);
+txtErg.setVisible(true);
+
+btback.setBounds(253, 10, 41, 30);
+bt3.setBounds(150, 150, 41, 41);
+bt2.setBounds(100, 150, 41, 41);
+bt1.setBounds(50, 150, 41, 41);
+bt6.setBounds(150, 100, 41, 41);
+bt5.setBounds(100, 100, 41, 41);
+bt4.setBounds(50, 100, 41, 41);
+bt7.setBounds(50, 50, 41, 41);
+bt8.setBounds(100, 50, 41, 41);
+bt9.setBounds(150, 50, 41, 41);
+bt0.setBounds(50, 200, 41, 41);
+btplus.setBounds(200, 200, 41, 41);
+btminus.setBounds(200, 150, 41, 41);
+btmal.setBounds(200, 100, 41, 41);
+btgeteilt.setBounds(200, 50, 41, 41);
+btDel.setBounds(100, 200, 43, 40);
+btis.setBounds(150, 200, 41, 41);
+
+cp.add(btback);
+cp.add(btis);
+cp.add(bt0);
+cp.add(bt1);
+cp.add(bt2);
+cp.add(bt3);
+cp.add(bt4);
+cp.add(bt5);
+cp.add(bt6);
+cp.add(bt7);
+cp.add(bt8);
+cp.add(bt9);
+cp.add(txtErg);
+cp.add(lblErg);
+cp.add(btplus);
+cp.add(btminus);
+cp.add(btmal);
+cp.add(btgeteilt);
+cp.add(btDel);
+
+setTitle("Taschenrechner");
+setSize(315, 310);
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setVisible(true);
+
+btback.addActionListener(this);
+txtErg.addActionListener(this);
+btplus.addActionListener(this);
+btminus.addActionListener(this);
+btmal.addActionListener(this);
+btgeteilt.addActionListener(this);
+btDel.addActionListener(this);
+bt1.addActionListener(this);
+bt2.addActionListener(this);
+bt3.addActionListener(this);
+bt4.addActionListener(this);
+bt5.addActionListener(this);
+bt6.addActionListener(this);
+bt7.addActionListener(this);
+bt8.addActionListener(this);
+bt9.addActionListener(this);
+bt0.addActionListener(this);
+btis.addActionListener(this);
+setErgebnis();
+
+}
+
+public void actionPerformed(ActionEvent event) {
+Object obj = event.getSource();
+if (obj == bt1) {
+backspace = 1;
+Rechnung();
+}
+if (obj == bt2) {
+backspace = 2;
+Rechnung();
+}
+if (obj == bt3) {
+backspace = 3;
+Rechnung();
+}
+if (obj == bt4) {
+backspace = 4;
+Rechnung();
+}
+if (obj == bt5) {
+backspace = 5;
+Rechnung();
+}
+if (obj == bt6) {
+backspace = 6;
+Rechnung();
+}
+if (obj == bt7) {
+backspace = 7;
+Rechnung();
+}
+if (obj == bt8) {
+backspace = 8;
+Rechnung();
+
+}
+if (obj == bt9) {
+backspace = 9;
+Rechnung();
+
+}
+
+if (obj == bt0) {
+backspace = 0;
+Rechnung();
+}
+
+else if (obj == btgeteilt) {
+if (num2 >= 1) {
+Operatorn();
+}
+num2_test = 1;
+Operator = "/";
+System.out.println(Operator);
+
+} else if (obj == btmal) {
+if (num2 >= 1) {
+Operatorn();
+}
+num2_test = 1;
+Operator = "*";
+System.out.println(Operator);
+
+} else if (obj == btplus) {
+if (num2 >= 1) {
+Operatorn();
+}
+num2_test = 1;
+Operator = "+";
+System.out.println(Operator);
+
+} else if (obj == btminus) {
+if (num2 >= 1) {
+Operatorn();
+}
+num2_test = 1;
+Operator = "-";
+System.out.println(Operator);
+System.out.println(num2_test);
+
+} else if (obj == btis) {
+Operatorn();
+
+} else if (obj == btDel) {
+num2_test = 0;
+Ergebnis = 0;
+num2 = 0;
+txtErg.setValue(Ergebnis);
+
+} else if (obj == btback) {
+if (num2_test == 1) {
+num2 = Math.floor(num2 / 10);
+txtErg.setValue(num2);
+} else if (num2_test == 0) {
+Ergebnis = Math.floor(Ergebnis / 10);
+txtErg.setValue(Ergebnis);
+}
+}
+}
+
+private void Operatorn() {
+num2_test = 0;
+if (Operator.equals("+")) {
+Ergebnis = Ergebnis + num2;
+} else if (Operator.equals("-")) {
+Ergebnis = Ergebnis - num2;
+} else if (Operator.equals("*")) {
+Ergebnis = Ergebnis * num2;
+} else if (Operator.equals("/")) {
+Ergebnis = Ergebnis / num2;
+}
+setErgebnis();
+num2 = 0;
+}
+
+private void Rechnung() {
+if (num2_test == 1) {
+num2 = num2 * 10;
+num2 = num2 + backspace;
+setNumber();
+} else {
+Ergebnis = Ergebnis * 10;
+Ergebnis = Ergebnis + backspace;
+setErgebnis();
+}
+}
+
+private void setErgebnis() {
+System.out.println(Ergebnis);
+txtErg.setValue(Ergebnis);
+}
+
+private void setNumber() {
+System.out.println(num2);
+txtErg.setValue(num2);
+}
+
+public static void main(String[] args) {
+new Rechner();
+
+}
+
+}
+
